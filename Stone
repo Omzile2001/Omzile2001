@@ -1,0 +1,172 @@
+
+Code C#
+class Stone
+    {
+        private string name;
+        private double price;
+        private string color;
+        private double weight;
+
+
+        public Stone(string Name, double Price, string Color, double Weight)
+        {
+            name = Name;
+            price = Price;
+            color = Color;
+            weight = Weight;
+        }
+
+        public string getName()
+        {
+            return name;
+        }
+        public double getPrice()
+        {
+            return price;
+        }
+        public string getColor()
+        {
+            return color;
+        }
+        public double getWeight()
+        {
+            return weight;
+        }
+    }
+}
+class StoneCo
+    {
+        private Stone[] myStone;
+        private int amount;
+
+        public StoneCo()
+        {
+            myStone=new Stone[20];
+            amount=0;
+        }
+
+        public string addStone(Stone s)
+        {
+            try
+            {
+                myStone[amount++] = s;
+            }
+            catch (Exception e)
+            {
+                return "Pet is not added!";
+            }
+            return "Pet is added!";
+        }
+
+
+        public string NameStoneWithHighestSalary()
+        {
+            double max = myStone[0].getPrice();
+            string name = myStone[0].getName();
+            for (int i = 1; i < amount; i++)
+            {
+                if (myStone[i].getPrice() > max)
+                {
+                    max = myStone[i].getPrice();
+                    name = myStone[i].getName();
+                }
+            }
+            return name + " and price is $" +max;
+        }
+
+        public int StoneAbove6Kg()
+        {
+            int count=0;
+            for (int i = 0; i < amount; i++)
+            {
+                if (myStone[i].getWeight() > 6.0)
+                {
+                    ++count;
+                }
+            }
+            return count;
+        }
+
+        public int HowManyDiamonds()
+        {
+            int count = 0;
+            for (int i = 0; i < amount; i++)
+            { 
+                if(myStone[i].getName()=="Diamond")
+                {
+                    ++count;
+                }
+            }
+            return count;
+        }
+
+        public double TotalPrice()
+        {
+            double total = 0.0;
+            for (int i = 0; i < amount; i++)
+            {
+                
+                total += myStone[i].getPrice();
+            }
+            return total;
+        }
+
+        public int HowManyLimestones()
+        {
+            int count = 0;
+            for (int i = 0; i < amount; i++)
+            {
+                if (myStone[i].getName() == "Limestone" && myStone[i].getColor() == "White")
+                {
+                    ++count;
+                }
+            }
+            return count;
+        }
+    }
+static void Main(string[] args)
+        {
+            StoneCo mySt = new StoneCo();
+
+            Stone st1 = new Stone("Diamond", 500.20, "lightBlue", 2.6);
+            mySt.addStone(st1);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}",  st1.getName(),st1.getPrice(),st1.getColor(),st1.getWeight());
+
+            Stone st2 = new Stone("Crystals",250.89,"Black",80.5);
+            mySt.addStone(st2);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st2.getName(), st2.getPrice(), st2.getColor(), st2.getWeight());
+
+            Stone st3 = new Stone("Granite", 900.65, "White", 25.6);
+            mySt.addStone(st3);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st3.getName(), st3.getPrice(), st3.getColor(), st3.getWeight());
+
+            Stone st4 = new Stone("Limestone",655.2,"White",65.2);
+            mySt.addStone(st4);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st4.getName(), st4.getPrice(), st4.getColor(), st4.getWeight());
+
+            Stone st5 = new Stone("Limestone", 200.2, "White", 4.8);
+            mySt.addStone(st5);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st5.getName(), st5.getPrice(), st5.getColor(), st5.getWeight());
+
+            Stone st6 = new Stone("Limestone", 655.2, "Brown", 5.2);
+            mySt.addStone(st6);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st6.getName(), st6.getPrice(), st6.getColor(), st6.getWeight());
+
+            Stone st7 = new Stone("Crystals", 452.89, "White", 3.5);
+            mySt.addStone(st7);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st7.getName(), st7.getPrice(), st7.getColor(), st7.getWeight());
+
+            Stone st8 = new Stone("Granite", 9000.65, "Yellow",95.6);
+            mySt.addStone(st8);
+            Console.WriteLine("Stone name: {0}, Price: {1}, Color: {2} and Weight: {3}", st8.getName(), st8.getPrice(), st8.getColor(), st8.getWeight());
+
+            //Method Calls
+            Console.WriteLine();
+
+            Console.WriteLine("Stone with the highest Price is {0}",mySt.NameStoneWithHighestSalary());
+            Console.WriteLine("Stones above 6kg are {0}",mySt.StoneAbove6Kg());
+            Console.WriteLine("The amount of Diamonds collected are {0}",mySt.HowManyDiamonds());
+            Console.WriteLine("Total Price for all stones is ${0}",mySt.TotalPrice());
+            Console.WriteLine("Number of Limestones with the color white are {0}",mySt.HowManyLimestones());
+        }
+
